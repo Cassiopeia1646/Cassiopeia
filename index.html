@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confession Button</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
     <style>
         body {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -14,7 +16,14 @@
             background: linear-gradient(to right, #ff7e5f, #feb47b);
             position: relative;
             overflow: hidden;
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif; /* Default font */
+        }
+        .romantic-text {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #fff; /* Text color */
+            font-family: 'Dancing Script', cursive; /* Readable romantic font */
         }
         .heart {
             position: absolute;
@@ -92,6 +101,8 @@
 </head>
 <body>
 
+<div class="romantic-text">Zelby, would you be my valentine? &lt;3</div>
+
 <div id="buttonContainer">
     <button id="yesButton">Yes</button>
     <button id="noButton">No</button>
@@ -101,15 +112,20 @@
     const noButton = document.getElementById("noButton");
 
     noButton.addEventListener("click", () => {
-        // Generate random coordinates within the viewport
-        const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
-        const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
+        // Get the viewport width
+        const viewportWidth = window.innerWidth;
+
+        // Generate random x coordinate within the viewport while ensuring the button is fully visible
+        const maxWidth = viewportWidth - noButton.offsetWidth; // Calculate maximum width
+        const x = Math.random() * maxWidth; // Random x position
+
+        // Set the new position for the "No" button
         noButton.style.left = x + "px";
-        noButton.style.top = y + "px";
+        noButton.style.top = noButton.offsetTop + "px"; // Keep the same vertical position
     });
 
     document.getElementById("yesButton").addEventListener("click", () => {
-        alert("Thank you for your response!");
+        alert("Thank you darling!");
     });
 
     // Create multiple heart elements
