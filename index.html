@@ -16,9 +16,47 @@
             overflow: hidden;
             font-family: Arial, sans-serif;
         }
+        .heart {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            transform: rotate(-45deg);
+            animation: float 3s infinite;
+            z-index: 1; /* Ensure hearts are behind buttons */
+        }
+        .heart:before, .heart:after {
+            content: "";
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: red;
+        }
+        .heart:before {
+            top: -25px;
+            left: 0;
+        }
+        .heart:after {
+            left: 25px;
+            top: 0;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
         #buttonContainer {
             display: flex;
             gap: 50px; /* Space between buttons */
+            position: relative; /* Position relative for button layering */
+            z-index: 2; /* Ensure buttons are in front of hearts */
         }
         #yesButton, #noButton {
             padding: 15px 30px;
@@ -27,8 +65,8 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
-            position: relative;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 3; /* Ensure buttons are in front of all elements */
         }
         #yesButton {
             background-color: #28a745;
@@ -73,6 +111,16 @@
     document.getElementById("yesButton").addEventListener("click", () => {
         alert("Thank you for your response!");
     });
+
+    // Create multiple heart elements
+    for (let i = 0; i < 10; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.top = Math.random() * 100 + "vh";
+        heart.style.animationDuration = (Math.random() * 2 + 2) + "s"; // Random float duration
+        document.body.appendChild(heart);
+    }
 </script>
 
 </body>
