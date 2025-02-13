@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confession Button</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            position: relative;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+        #buttonContainer {
+            display: flex;
+            gap: 50px; /* Space between buttons */
+        }
+        #yesButton, #noButton {
+            padding: 15px 30px;
+            font-size: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        #yesButton {
+            background-color: #28a745;
+            color: white;
+        }
+        #noButton {
+            background-color: #dc3545;
+            color: white;
+            font-size: 18px;
+            position: absolute; /* Make it absolute to move anywhere */
+        }
+        @media (max-width: 600px) {
+            #yesButton, #noButton {
+                padding: 10px 20px;
+                font-size: 16px;
+            }
+            #buttonContainer {
+                flex-direction: column;
+                gap: 20px; /* Vertical space on small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="buttonContainer">
+    <button id="yesButton">Yes</button>
+    <button id="noButton">No</button>
+</div>
+
+<script>
+    const noButton = document.getElementById("noButton");
+
+    noButton.addEventListener("click", () => {
+        // Generate random coordinates within the viewport
+        const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
+        const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
+        noButton.style.left = x + "px";
+        noButton.style.top = y + "px";
+    });
+
+    document.getElementById("yesButton").addEventListener("click", () => {
+        alert("Thank you for your response!");
+    });
+</script>
+
+</body>
+</html>
